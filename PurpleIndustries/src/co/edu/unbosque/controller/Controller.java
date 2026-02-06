@@ -16,21 +16,57 @@ public class Controller {
 	}
 	
 	public void run() {
+		boolean salir= false;
 		
-		cicloPrincipal : while(true) {
-			int opcion; 
-			cicloOpcionMenu : while(true) {
+		 while(!salir) {
 				try {
-					con.imprimirConSalto("");
+					con.imprimirConSalto("\n 🏥🚑💉💖Bienvenido al sistema de pacientes🏥🚑💉💖");
+					con.imprimirConSalto("1. Ingresar un paciente");
+					con.imprimirConSalto("2. Menu para doctores");
+					con.imprimirConSalto("3. Diagnosticar pacientes");
+					con.imprimirConSalto("0. salir");
+					con.imprimirConSalto("Elija una opcion");
+					
+					int opcion = con.leerEntero();
+					con.leerLinea();
+					
+					if (opcion < 0 || opcion > 3) {
+						System.out.println(" Opción incorrecta. Ingrese un número entre 0 y 3.");
+						continue;
+					}
+					
+					switch (opcion) {
+					case 1: 
+						boolean paciente = true;
+						while (paciente) {
+							con.imprimirConSalto("Ingrese el nombre del paciente 🧑🏼‍⚕️✨");
+							
+							
+						}
+							
+							
+							
+			
+						break;
+					case 2: 
+						
+						
+					}
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
 					
 				}catch(InputMismatchException e ) {
 					con.quemarLinea();
 				}
 			}
-		}
-		
 	}
-	
-	
-
 }
