@@ -48,7 +48,7 @@ public class Controller {
 							con.imprimirConSalto("Ingrese el Numero de identidad del paciente 🧑🏼‍⚕️✨");
 							int id = con.leerEntero();
 							con.imprimirConSalto("");
-							
+							con.quemarLinea();
 							con.imprimirConSalto("Ingrese el tipo de sangre del paciente 🧑🏼‍⚕️✨ ");
 							String sangre= con.leerLinea();
 							con.imprimirConSalto("");
@@ -60,7 +60,7 @@ public class Controller {
 							con.imprimirConSalto("Ingrese la altura del paciente 🧑🏼‍⚕️✨");
 							int altura = con.leerEntero();
 							con.imprimirConSalto("");
-							
+							con.quemarLinea();
 							Paciente nuevo = new Paciente(nombre, sangre, altura);
 							mf.getPacienteDAO().crear(nuevo);
 							
