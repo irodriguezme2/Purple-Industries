@@ -25,7 +25,7 @@ public class Controller {
 				con.imprimirConSalto("\n 🏥🚑💉💖Bienvenido al sistema de pacientes🏥🚑💉💖");
 				con.imprimirConSalto("\nElija una opcion:");
 				con.imprimirConSalto("1. Ingresar un paciente");
-				con.imprimirConSalto("2. Menu para doctores");
+				con.imprimirConSalto("2. Ingresar un nuevo doctor");
 				con.imprimirConSalto("3. Diagnosticar pacientes");
 				con.imprimirConSalto("0. salir");
 
@@ -113,20 +113,34 @@ public class Controller {
 						con.imprimirConSalto("Seleccionar el paciente a diagnosticar 😷🤒🧑🏼");
 						con.imprimirConSalto("");
 						con.imprimirConSalto(mf.getPacienteDAO().mostrarTodo());
-						con.imprimirConSalto("ingrese el id del paciente a seleccionar: ");
-						int documentoAux =con.leerEntero();
+						con.imprimirConSalto("ingrese el numero de identificacion del paciente a seleccionar: ");
+						int documento = con.leerEntero();
 						con.quemarLinea();
+						
+						con.imprimirConSalto("El pasiente seleccionado es:");
 //						mf.getPacienteDAO().getPacienteById(documentoAux);
-						con.imprimirConSalto("Cual será es el triage del paciente?");
+						con.imprimirConSalto("Ingrese el numero del triage del paciente 😷🧑🏼‍⚕️✨");
+						con.imprimirConSalto("1. Resucitacion 🩻");
+						con.imprimirConSalto("2. Emergencia 🏥 ");
+						con.imprimirConSalto("3. Urgencia 🚑");
+						con.imprimirConSalto("4. Urgencia menor 🤒 ");
+						con.imprimirConSalto("5. Sin Urgencia 🩺👨🏼‍⚕️ ");
+						int triage= con.leerEntero();
+						con.quemarLinea();
 						
 						con.imprimirConSalto("ingrese el diagnotico final del paciente: ");
+						String diagnostico= con.leerLinea();
 						
 						
 						
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
-
+						break;
+				case 0:	
+					salir=true;
+					con.imprimirConSalto("Saliendo del programa, hasta luego!!! 😷");
+					
 				}
 			} catch (InputMismatchException e) {
 				con.quemarLinea();
