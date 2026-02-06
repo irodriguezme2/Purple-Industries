@@ -3,6 +3,7 @@ package co.edu.unbosque.controller;
 import java.util.InputMismatchException;
 
 import co.edu.unbosque.model.ModelFacade;
+import co.edu.unbosque.model.Paciente;
 import co.edu.unbosque.view.Console;
 
 public class Controller {
@@ -49,6 +50,19 @@ public class Controller {
 							con.imprimirConSalto("");
 							
 							con.imprimirConSalto("Ingrese el tipo de sangre del paciente 🧑🏼‍⚕️✨ ");
+							String sangre= con.leerLinea();
+							con.imprimirConSalto("");
+							
+							con.imprimirConSalto("Ingrese el peso del paciente 🧑🏼‍⚕️✨");
+							int peso = con.leerEntero();
+							con.imprimirConSalto("");
+							
+							con.imprimirConSalto("Ingrese la altura del paciente 🧑🏼‍⚕️✨");
+							int altura = con.leerEntero();
+							con.imprimirConSalto("");
+							
+							Paciente nuevo = new Paciente(nombre, sangre, altura);
+							mf.getPacienteDAO().crear(nuevo);
 							
 							
 						
