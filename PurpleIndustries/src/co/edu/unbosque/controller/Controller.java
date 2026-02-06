@@ -2,6 +2,7 @@ package co.edu.unbosque.controller;
 
 import java.util.InputMismatchException;
 
+import co.edu.unbosque.model.Doctor;
 import co.edu.unbosque.model.ModelFacade;
 import co.edu.unbosque.model.Paciente;
 import co.edu.unbosque.view.Console;
@@ -64,25 +65,38 @@ public class Controller {
 							Paciente nuevo = new Paciente(nombre, sangre, altura);
 							mf.getPacienteDAO().crear(nuevo);
 							
-							
-						
 						}
 						break;
 					case 2: 
+						boolean doctor = true;
+						while(doctor) {
+							
+
+							con.imprimirConSalto("Ingresa el nombre del doctor 🧑🏼‍⚕️✨");
+							String nombre= con.leerLinea();
+							con.imprimirConSalto(nombre);
 						
+							con.imprimirConSalto("Ingrese la fecha de nacimiento del doctor 🧑🏼‍⚕️✨");
+							int id = con.leerEntero();
+							con.imprimirConSalto("");
+						
+							
+							con.imprimirConSalto("Ingrese el numero de documento del doctor 🧑🏼‍⚕️✨");
+							int peso = con.leerEntero();
+							con.imprimirConSalto("");
+							
+							con.imprimirConSalto("Ingrese la especialidad del doctor 🧑🏼‍⚕️✨");
+							String especialidad = con.leerLinea();
+							con.imprimirConSalto("");
+							
+							Doctor nuevo = new Doctor(nombre, nombre, peso, especialidad);
+							mf.getDoctorDAO().crear(nuevo);
+						
+							
+						}
 						
 					}
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-
+				
 					
 				}catch(InputMismatchException e ) {
 					con.quemarLinea();
