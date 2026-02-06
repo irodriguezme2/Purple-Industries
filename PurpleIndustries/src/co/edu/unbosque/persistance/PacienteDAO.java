@@ -1,6 +1,7 @@
 package co.edu.unbosque.persistance;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import co.edu.unbosque.model.Doctor;
 import co.edu.unbosque.model.Paciente;
@@ -17,7 +18,7 @@ public class PacienteDAO implements OperacionDAO<Paciente> {
 
 	@Override
 	public void crear(Paciente nuevoDato) {
-		listaPacientes = new ArrayList<>();
+		listaPacientes.add(nuevoDato);
 		escribirEnArchivo();
 
 	}
@@ -53,6 +54,8 @@ public class PacienteDAO implements OperacionDAO<Paciente> {
 			return 1;
 		}
 	}
+	
+	
 
 	@Override
 	public String mostrarTodo() {
@@ -120,6 +123,26 @@ public class PacienteDAO implements OperacionDAO<Paciente> {
 
 		}
 
+	}
+
+	public Paciente getPacienteById(int documento) {
+		for (Paciente p : listaPacientes) {
+			if (p.getDocumento() == documento) {
+				return p;
+			}
+		}
+		return null;
+		
+	}
+	
+	public void modificarDatosMedicos(int documento, int triage, String diagnostico) {
+		Paciente p = getPacienteById(documento);
+		
+		if (p!=null) {
+			p.setTriage(triage);
+			p.setDiagnostico(diagnostico);
+		}
+		
 	}
 
 }
