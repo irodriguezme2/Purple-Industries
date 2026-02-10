@@ -87,8 +87,30 @@ public class Controller {
 							try {
 								documento = con.leerEntero();
 								con.quemarLinea();
+								
+								char doc[] = new char[10];
+
+								String num = String.valueOf(documento);
+								String id ="";
+
+								for (int i = 0; i < doc.length; i++) {
+									doc[i] = '*';
+									if (num.charAt(i) == '0') {
+
+										doc[i] = num.charAt(i);
+										id += doc[i];
+									} else {
+										continue;
+									}
+
+								}
+								
+								con.imprimirConSalto(id);
+								
+
+								
 								ExceptionChecker.checkDocumento(documento);
-								con.imprimirConSalto("Documento registrado: " + documento);
+								con.imprimirConSalto("Documento registrado: " + id);
 								break;
 							} catch (InputMismatchException e) {
 								con.imprimirConSalto("Error: debe ingresar solo números.");

@@ -35,20 +35,6 @@ public class ExceptionChecker {
 
 	public static void checkDocumento(int id) throws NegativeValueException, OutOfRangeException {
 
-		char documento[] = new char[10];
-
-		String num = String.valueOf(id);
-
-		for (int i = 0; i < documento.length; i++) {
-			documento[i] = '*';
-			if (num.charAt(i) == '0') {
-
-				documento[i] = num.charAt(i);
-			} else {
-				continue;
-			}
-
-		}
 
 		if (id <= 0) {
 			throw new NegativeValueException("id");
