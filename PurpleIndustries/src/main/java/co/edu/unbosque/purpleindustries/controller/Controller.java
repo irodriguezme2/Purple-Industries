@@ -112,7 +112,7 @@ public class Controller {
                                 rh = con.leerLinea();
 
                                 try {
-                                    ExceptionChecker.checkRh(rh);
+                                    ExceptionChecker.checkRh(preguntarEstado(List.of("O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"),"Ingrese un tipo de sangre del paciente"));
                                     con.imprimirConSalto("RH registrado: " + rh);
                                     break;
                                 } catch (EmptyFieldException | InvalidFormatException e) {
@@ -692,5 +692,28 @@ public class Controller {
         );
     }
 
+    private String preguntarEstado(List<String> estados, String texto) {
+        String valor = null;
+        String temp;
+        con.imprimirConSalto(texto);
+        while (valor == null) {
+            con.imprimirConSalto(estados.toString());
+            temp = con.leerLinea();
+            if (estados.contains(temp)) {
+                valor = temp;
+            } else {
+                con.imprimirConSalto("El valor digitado es invalido.");
+            }
+        }
+        return getRh(valor);
+    }
+
+    private String getRh(String rh){
+        rh = rh.replace("-","");
+        if(rh.equals("AB")){
+            return "BA";
+        }
+        return rh;
+    }
 
 }
