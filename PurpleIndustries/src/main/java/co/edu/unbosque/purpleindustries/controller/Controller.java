@@ -25,7 +25,7 @@ public class Controller {
 		mf = new ModelFacade();
 	}
 
-	public void run() {
+	public void run() { 
 		boolean salir = false;
 
 		while (!salir) {

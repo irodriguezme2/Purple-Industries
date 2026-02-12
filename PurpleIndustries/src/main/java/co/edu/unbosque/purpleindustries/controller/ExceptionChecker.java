@@ -7,7 +7,7 @@ import co.edu.unbosque.purpleindustries.util.exception.NegativeValueException;
 import co.edu.unbosque.purpleindustries.util.exception.OutOfRangeException;
 
 public class ExceptionChecker {
-
+ 
 	// PERSONA
 	public static void checkNombre(String nombre) throws EmptyFieldException, InvalidFormatException {
 

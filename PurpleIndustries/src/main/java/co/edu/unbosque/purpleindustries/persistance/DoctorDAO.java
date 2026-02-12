@@ -23,7 +23,7 @@ public class DoctorDAO implements OperacionDAO<Doctor> {
 			listaDoctores.clear();
 		}
 	}
-
+ 
 	@Override
 	public int eliminar(int index) {
 		if (index < 0 || index >= listaDoctores.size()) {

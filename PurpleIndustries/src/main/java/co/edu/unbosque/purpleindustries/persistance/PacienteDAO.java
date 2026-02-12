@@ -65,7 +65,7 @@ public class PacienteDAO implements OperacionDAO<Paciente> {
 			return 1;
 		}
 	}
-
+ 
 	@Override
 	public String mostrarTodo() {
 		String salida = "";

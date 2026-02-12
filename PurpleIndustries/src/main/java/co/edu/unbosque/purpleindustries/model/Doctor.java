@@ -12,7 +12,7 @@ public class Doctor extends Persona {
 		super(nombre, fechaDeNacimiento, documento, email);
 		// TODO Auto-generated constructor stub
 	}
-
+ 
 	public Doctor(String nombre, String fechaDeNacimiento, int documento, String email, String especialidad) {
 		super(nombre, fechaDeNacimiento, documento, email);
 		this.especialidad = especialidad;

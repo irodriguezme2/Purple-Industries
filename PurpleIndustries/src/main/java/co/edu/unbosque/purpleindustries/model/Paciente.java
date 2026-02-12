@@ -7,7 +7,7 @@ public class Paciente extends Persona {
 	private String rh;
 	private int triage;
 	private String diagnostico;
-
+ 
 	public Paciente() {
 		// TODO Auto-generated constructor stub
 	}

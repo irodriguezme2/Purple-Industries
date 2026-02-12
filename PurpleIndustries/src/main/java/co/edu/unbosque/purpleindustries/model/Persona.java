@@ -12,7 +12,7 @@ public abstract class Persona {
 	private String signoZodiacal;
 	private int documento;
 	private String email;
-
+ 
 	public Persona() {
 		// TODO Auto-generated constructor stub
 	}
