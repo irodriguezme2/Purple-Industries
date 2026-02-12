@@ -43,7 +43,7 @@ public class Paciente extends Persona {
 		this.rh = rh;
 		this.triage = triage;
 		this.diagnostico = diagnostico;
-		this.fechaIngreso = fechaIngreso;
+		this.fechaIngreso = (fechaIngreso != null) ? fechaIngreso : LocalDate.now();
 	}
 
 	@Override
