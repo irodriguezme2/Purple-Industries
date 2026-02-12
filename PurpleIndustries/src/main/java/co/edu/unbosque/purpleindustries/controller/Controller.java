@@ -9,18 +9,23 @@ import co.edu.unbosque.purpleindustries.util.exception.NegativeValueException;
 import co.edu.unbosque.purpleindustries.util.exception.OutOfRangeException;
 import co.edu.unbosque.purpleindustries.view.Console;
 
+import java.time.YearMonth;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Random;
+import java.time.LocalDate;
 
 public class Controller {
 
     private Console con;
     private ModelFacade mf;
+    private GeneradorReportePacientesPDF pdf;
 
     public Controller() {
         con = new Console();
         mf = new ModelFacade();
+        pdf = new GeneradorReportePacientesPDF();
     }
 
     public void run() {
@@ -157,7 +162,7 @@ public class Controller {
                             }
 
                             Paciente nuevo = new Paciente(nombre, fechaDeNacimiento, id, altura, peso, rh, 1,
-                                    "Sin registrar");
+                                    "Sin registrar", LocalDate.now());
                             mf.getPacienteDAO().crear(nuevo);
 
                         } catch (Exception e) {
@@ -341,8 +346,15 @@ public class Controller {
                                 con.imprimirConSalto("Error: " + e.getMessage());
                             }
                         }
+                        Paciente actual = mf.getPacienteDAO().getPacienteById(documentoPaciente1);
+                        if (actual == null) {
+                        con.imprimirConSalto("No se encontró un paciente con ese documento.");
+                        break;
+                        }
 
-                        Paciente nuevo = new Paciente(nombre, fechaDeNacimiento, id, altura, (peso+""), rh, 1,"Sin registrar");
+                        LocalDate fechaIngresoOriginal = actual.getFechaIngreso();
+
+                        Paciente nuevo = new Paciente(nombre, fechaDeNacimiento, id, altura, (peso+""), rh, 1,"Sin registrar", fechaIngresoOriginal);
                         mf.getPacienteDAO().actualizar(id, nuevo);
                         con.imprimirConSalto("Paciente " + nombre + "actualizado correctamente");
                         break;
@@ -711,7 +723,7 @@ public class Controller {
         );
         String diagnostico = diagnosticos.get(random.nextInt(diagnosticos.size()));
 
-        return new Paciente(nombre, fechaNacimiento, documento, altura, (peso+""), rh, triage, diagnostico);
+        return new Paciente(nombre, fechaNacimiento, documento, altura, (peso+""), rh, triage, diagnostico, LocalDate.now());
         		
         		
     }
@@ -728,6 +740,16 @@ public class Controller {
 
         return "Peso en gramos: " + gr + " g\nPeso en libras: " + libra + " lb\nPeso en onzas: " + oz
                 + " oz\nPeso en miligramos: " + mg + " mg\nPeso en kilos: " + peso + " kg";
+    }
+
+    public void exportarReporteMensualActual() {
+
+        YearMonth periodoActual = YearMonth.now(); 
+
+        pdf.generarReporteMensualPacientes(
+                mf.getPacienteDAO().getListaPacientes(),
+                periodoActual
+        );
     }
 
 
