@@ -115,19 +115,8 @@ public class Controller {
 							}
 						}
 
-                            String rh = "";
-                            while (true) {
-                                con.imprimirConSalto("Ingrese el tipo de sangre del paciente 🧑🏼‍⚕️✨");
-                                rh = con.leerLinea();
-
-                                try {
-                                    ExceptionChecker.checkRh(rh);
-                                    con.imprimirConSalto("RH registrado: " + rh);
-                                    break;
-                                } catch (EmptyFieldException | InvalidFormatException e) {
-                                    con.imprimirConSalto("Error: " + e.getMessage());
-                                }
-                            }
+                            String rh = parseRH(preguntarEstado(List.of("O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"), "Ingrese el tipo de sangre del paciente 🧑🏼‍⚕️✨"));
+                            con.imprimirConSalto("RH registrado: " + rh);
 
                             String peso = "";
                             double pesoD = 0;
@@ -301,19 +290,8 @@ public class Controller {
                             }
                         }
 
-                        String rh = "";
-                        while (true) {
-                            con.imprimirConSalto("Ingrese el tipo de sangre del paciente 🧑🏼‍⚕️✨");
-                            rh = con.leerLinea();
-
-                            try {
-                                ExceptionChecker.checkRh(rh);
-                                con.imprimirConSalto("RH registrado: " + rh);
-                                break;
-                            } catch (EmptyFieldException | InvalidFormatException e) {
-                                con.imprimirConSalto("Error: " + e.getMessage());
-                            }
-                        }
+                        String rh = parseRH(preguntarEstado(List.of("O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"), "Ingrese el tipo de sangre del paciente 🧑🏼‍⚕️✨"));
+                        con.imprimirConSalto("RH registrado: " + rh);
 
                         double peso = 0;
                         while (true) {
@@ -597,7 +575,7 @@ public class Controller {
         }
     }
 
-    public static Paciente crearPacienteAleatorioSeguro() {
+    public Paciente crearPacienteAleatorioSeguro() {
 
         Random random = new Random();
 
@@ -714,7 +692,7 @@ public class Controller {
         peso = Math.round(peso * 10.0) / 10.0;
 
         List<String> rhs = List.of("O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-");
-        String rh = rhs.get(random.nextInt(rhs.size()));
+        String rh = parseRH(rhs.get(random.nextInt(rhs.size())));
 
         int triage = random.nextInt(5) + 1;
 
@@ -759,5 +737,28 @@ public class Controller {
         );
     }
 
+    private String preguntarEstado(List<String> estados, String texto) {
+        String valor = null;
+        String temp;
+        while (valor == null) {
+            con.imprimirConSalto(texto);
+            estados.forEach(estado -> con.imprimirConSalto(estado));
+            temp = con.leerLinea();
+            if (estados.contains(temp)) {
+                valor = temp;
+            } else {
+                con.imprimirConSalto("El valor digitado es invalido.");
+            }
+        }
+        return valor;
+    }
+
+    private String parseRH(String rh) {
+        if (rh.equals("AB-")) {
+            rh= "BA";
+        }
+        rh = rh.replace("-", "+");
+        return rh;
+    }
 
 }
