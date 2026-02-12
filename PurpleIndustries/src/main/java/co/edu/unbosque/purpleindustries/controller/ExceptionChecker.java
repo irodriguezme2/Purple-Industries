@@ -2,16 +2,23 @@ package co.edu.unbosque.purpleindustries.controller;
 
 import java.util.Iterator;
 
+import co.edu.unbosque.purpleindustries.model.ModelFacade;
 import co.edu.unbosque.purpleindustries.util.exception.EmptyFieldException;
+import co.edu.unbosque.purpleindustries.util.exception.IdAlreadyExists;
 import co.edu.unbosque.purpleindustries.util.exception.InvalidFormatException;
 import co.edu.unbosque.purpleindustries.util.exception.NegativeValueException;
 import co.edu.unbosque.purpleindustries.util.exception.OutOfRangeException;
 
 public class ExceptionChecker {
+	
+	private static ModelFacade mf;
+	
+	public ExceptionChecker() {
+		mf = new ModelFacade(); 
+	}
 
 	// PERSONA
 	public static void checkNombre(String nombre) throws EmptyFieldException, InvalidFormatException {
-
 		if (nombre == null || nombre.trim().isEmpty()) {
 			throw new EmptyFieldException("nombre");
 		}
@@ -33,18 +40,25 @@ public class ExceptionChecker {
 		}
 	}
 
-	public static void checkDocumento(int id) throws NegativeValueException, OutOfRangeException {
-
-
+	public static void checkDocumento(int id) throws NegativeValueException, OutOfRangeException{
 		if (id <= 0) {
 			throw new NegativeValueException("id");
 		}
-
+		
+		
 		if (id > 999999999) {
 			throw new OutOfRangeException("id", "1 - 9999999999");
 		}
+		
 	}
-
+	
+	public static void checkDocumentoString(boolean id) throws IdAlreadyExists{
+		if (id) {
+			throw new IdAlreadyExists();
+		}
+	}
+	
+	
 	// PACIENTE
 	public static void checkRh(String rh) throws EmptyFieldException, InvalidFormatException {
 

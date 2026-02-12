@@ -65,8 +65,8 @@ public class DoctorDAO implements OperacionDAO<Doctor> {
 		}
 	}
 
-	public int actualizar(int documento, Doctor datoAActualizar) {
-		if (documento < 0) {
+	public int actualizar(String documento, Doctor datoAActualizar) {
+		if (documento == null) {
 			return 0;
 		} else {
 			Doctor p = getDoctorById(documento);
@@ -82,9 +82,9 @@ public class DoctorDAO implements OperacionDAO<Doctor> {
 		}
 	}
 
-	public Doctor getDoctorById(int documento) {
+	public Doctor getDoctorById(String documento) {
 		for (Doctor p : listaDoctores) {
-			if (p.getDocumento() == documento) {
+			if (p.getDocumento().equals(documento)) {
 				return p;
 			}
 		}
@@ -116,7 +116,7 @@ public class DoctorDAO implements OperacionDAO<Doctor> {
 				try {
 					String nombre = fila.get(0);
 					String fechaDeNacimiento = fila.get(1);
-					int documento = Integer.parseInt(fila.get(2));
+					String documento = fila.get(2);
 					String especialidad = fila.get(3);
 					listaDoctores.add(new Doctor(nombre, fechaDeNacimiento, documento, especialidad));
 				} catch (NumberFormatException e) {
