@@ -4,6 +4,7 @@ import co.edu.unbosque.purpleindustries.model.Doctor;
 import co.edu.unbosque.purpleindustries.model.ModelFacade;
 import co.edu.unbosque.purpleindustries.model.Paciente;
 import co.edu.unbosque.purpleindustries.util.exception.EmptyFieldException;
+import co.edu.unbosque.purpleindustries.util.exception.IdAlreadyExists;
 import co.edu.unbosque.purpleindustries.util.exception.InvalidFormatException;
 import co.edu.unbosque.purpleindustries.util.exception.NegativeValueException;
 import co.edu.unbosque.purpleindustries.util.exception.OutOfRangeException;
@@ -19,7 +20,7 @@ import java.time.LocalDate;
 public class Controller {
 
     private Console con;
-    private ModelFacade mf;
+    private static ModelFacade mf;
     private GeneradorReportePacientesPDF pdf;
 
     public Controller() {
@@ -346,7 +347,7 @@ public class Controller {
                                 con.imprimirConSalto("Error: " + e.getMessage());
                             }
                         }
-                        Paciente actual = mf.getPacienteDAO().getPacienteById(documentoPaciente1);
+                        Paciente actual = mf.getPacienteDAO().getPacienteById(id);
                         if (actual == null) {
                         con.imprimirConSalto("No se encontró un paciente con ese documento.");
                         break;
@@ -698,7 +699,8 @@ public class Controller {
         int anio = random.nextInt(60) + 1960; // 1960–2019
         String fechaNacimiento = String.format("%02d/%02d/%04d", dia, mes, anio);
 
-        int documento = random.nextInt(999_999_999) + 1;
+        int doc = random.nextInt(999_999_999) + 1;
+        String documento = mf.rellenarDocumento(doc); 
 
         double altura = 0.3 + (2.5 - 0.3) * random.nextDouble();
         altura = Math.round(altura * 100.0) / 100.0;
