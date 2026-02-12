@@ -120,13 +120,13 @@ public class Controller {
                                 }
                             }
 
-                            double peso = 0;
+                            String peso = "";
+                            double pesoD = 0;
                             while (true) {
                                 con.imprimirConSalto("Ingrese el peso del paciente (kg) 🧑🏼‍⚕️✨");
                                 try {
-                                    peso = con.leerEntero();
-                                    con.quemarLinea();
-                                    ExceptionChecker.checkPeso(peso);
+                                    pesoD = con.leerDouble();
+                                    ExceptionChecker.checkPeso(pesoD);
                                     con.imprimirConSalto("Peso registrado: " + peso + " kg");
                                     break;
                                 } catch (InputMismatchException e) {
@@ -690,6 +690,20 @@ public class Controller {
                 triage,
                 diagnostico
         );
+    }
+    
+    public String unidadesPeso(double peso) {
+        double gr;
+        double libra;
+        double oz;
+        double mg;
+        gr = peso * 1000;
+        libra = peso * 2.20462;
+        oz = peso * 35.274;
+        mg = peso * 1e+6;
+
+        return "Peso en gramos: " + gr + " g\nPeso en libras: " + libra + " lb\nPeso en onzas: " + oz
+                + " oz\nPeso en miligramos: " + mg + " mg\nPeso en kilos: " + peso + " kg";
     }
 
 
