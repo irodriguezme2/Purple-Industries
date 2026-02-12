@@ -163,7 +163,7 @@ public class Controller {
 						while (true) {
 							con.imprimirConSalto("Ingrese la altura del paciente (m) 🧑🏼‍⚕️✨");
 							try {
-								altura = con.leerEntero();
+								altura = con.leerDouble();
 								con.quemarLinea();
 								ExceptionChecker.checkAltura(altura);
 								con.imprimirConSalto("Altura registrada: " + altura + " m");
@@ -382,8 +382,9 @@ public class Controller {
 					while (true) {
 						con.imprimirConSalto("Ingrese la altura del paciente (m) 🧑🏼‍⚕️✨");
 						try {
-							altura = con.leerEntero();
+							altura = con.leerDouble();
 							con.quemarLinea();
+
 							ExceptionChecker.checkAltura(altura);
 							con.imprimirConSalto("Altura registrada: " + altura + " m");
 							break;
