@@ -687,10 +687,10 @@ public class Controller {
     }
 
     private String parseRH(String rh) {
-        rh = rh.replace("-", "");
-        if (rh.equals("AB")) {
-            return "BA";
+        if (rh.equals("AB-")) {
+            rh= "BA";
         }
+        rh = rh.replace("-", "+");
         return rh;
     }
 
