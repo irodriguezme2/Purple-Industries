@@ -163,7 +163,6 @@ public class PacienteDAO implements OperacionDAO<Paciente> {
 			fila.add(paciente.getDocumento());
 			fila.add(paciente.getEmail());
 
-			
 			double metros = paciente.getAltura();
 
 			String alturaTexto =
