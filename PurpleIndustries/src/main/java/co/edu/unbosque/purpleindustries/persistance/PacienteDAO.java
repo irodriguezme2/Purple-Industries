@@ -191,5 +191,4 @@ public class PacienteDAO implements OperacionDAO<Paciente> {
     public ArrayList<Paciente> getListaPacientes() {
     return listaPacientes;
 }
-
 }

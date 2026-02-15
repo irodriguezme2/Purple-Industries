@@ -10,6 +10,7 @@ public class Paciente extends Persona {
 	private int triage;
 	private String diagnostico;
 	private LocalDate fechaIngreso;
+	
 
 	public Paciente() {
 		// TODO Auto-generated constructor stub
